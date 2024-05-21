@@ -1,0 +1,125 @@
+---
+title: "MBON Data Report(s)"
+description: Data Reporting on MBON-mediated Datasets 
+code-fold: true
+---
+
+
+```{R}
+#| code-summary: setup
+if (!requireNamespace("librarian", quietly = TRUE)) {
+  # If not installed, install the package
+  install.packages("librarian")
+}
+
+librarian::shelf(
+  dplyr,
+  ggplot2,
+  networkD3,
+  skimr,
+  tm,
+  wordcloud
+)
+
+```
+
+```{R}
+data <- read.csv("data/MBON dataset registration (Responses) - Form Responses 1.csv")
+```
+
+```{R}
+#| code-summary: rename columns
+data <- data %>%
+  rename(
+    mbon.project = Which.MBON.project.is.this.dataset.associated.with.,
+    RA = If.you.have.worked.with.a.Regional.Association..please.indicate.which.one.s..,
+    erddap = Has.the.dataset.been.loaded.into.ERDDAP.
+  )
+
+```
+
+```{R}
+#| code-summary: Print basic diagnostic information
+# print(head(data))     # View first few rows
+# print(str(data))      # Structure of the data frame
+# print(summary(data))  # Statistical summary of the data
+#  Use skimr to provide a detailed summary
+skimmed_data <- skimr::skim(data)
+print(skimmed_data)
+
+# skimr::skim_tee(data)
+```
+
+```{R}
+#| code-summary: create word cloud from titles & descriptions
+
+combined_text <- paste(data$`Dataset.title`, data$`Dataset.summary`, collapse = " ")
+corpus <- Corpus(VectorSource(combined_text))
+
+# Clean the text data
+toSpace <- content_transformer(function(x, pattern) gsub(pattern, " ", x))
+corpus <- tm_map(corpus, toSpace, "/")
+corpus <- tm_map(corpus, toSpace, "@")
+corpus <- tm_map(corpus, toSpace, "\\|")
+
+corpus <- tm_map(corpus, content_transformer(tolower))
+corpus <- tm_map(corpus, removePunctuation)
+corpus <- tm_map(corpus, removeNumbers)
+corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stripWhitespace)
+
+# Create a Term-Document Matrix
+dtm <- TermDocumentMatrix(corpus)
+matrix <- as.matrix(dtm)
+word_freqs <- sort(rowSums(matrix), decreasing = TRUE)
+df <- data.frame(word = names(word_freqs), freq = word_freqs)
+
+# Generate the word cloud
+wordcloud(words = df$word, freq = df$freq, min.freq = 1, 
+          max.words = 100, random.order = FALSE, 
+          colors = brewer.pal(8, "Dark2"))
+```
+
+```{R}
+#| code-summary: create a sankey diagram
+
+# Merge values with same meaning or replace with more meaningul strings
+data <- data %>%
+  mutate(
+    RA = ifelse(RA == "", "No RA", RA),
+    erddap = ifelse(tolower(erddap) == "yes",         "in ERDDAP",     erddap),
+    erddap = ifelse(tolower(erddap) %in% c("no", ""), "not in ERDDAP", erddap)
+  )
+
+# Create links data frame for mbon.project -> RA and RA -> erddap
+links_mbon_ra <- data.frame(
+  source = data$mbon.project,
+  target = data$RA,
+  value = 1  # You can adjust this value as needed
+)
+
+links_ra_erddap <- data.frame(
+  source = data$RA,
+  target = data$erddap,
+  value = 1  # You can adjust this value as needed
+)
+
+# Combine the links data frames
+links <- rbind(links_mbon_ra, links_ra_erddap)
+
+# Create nodes data frame
+nodes <- data.frame(
+  name = c(as.character(links$source), as.character(links$target)) %>% unique()
+)
+
+# Reformat the links with IDs
+links$IDsource <- match(links$source, nodes$name) - 1
+links$IDtarget <- match(links$target, nodes$name) - 1
+
+# Make the Network
+p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes,
+                   Source = "IDsource", Target = "IDtarget",
+                   Value = "value", NodeID = "name",
+                   sinksRight = FALSE)
+p
+```

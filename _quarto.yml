@@ -1,0 +1,21 @@
+project:
+  type: website
+  pre-render: prerender_report_templates.R
+
+website:
+  title: "MBON Data Report"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+        
+      - href: regional_report/regional_reports.qmd
+        
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  cache: true

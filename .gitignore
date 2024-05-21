@@ -1,3 +1,8 @@
+# quarto
+*_files/
+_site/
+regional_report/regional_reports/
+
 # History files
 .Rhistory
 .Rapp.history
@@ -47,3 +52,5 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+/.quarto/

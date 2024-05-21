@@ -1,0 +1,37 @@
+---
+title: "SE US"
+format: html
+#echo: false
+code-fold: true
+warning: false
+params: 
+  project_id: "SE US"
+execute: 
+  cache: true
+---
+
+
+```{R}
+#| code-summary: setup
+if (!requireNamespace("librarian", quietly = TRUE)) {
+  # If not installed, install the package
+  install.packages("librarian")
+}
+
+librarian::shelf(
+  dplyr,
+  here
+)
+
+```
+
+# `r params$project_id` Report
+```{R}
+#| code-summary: load data
+data <- read.csv(here("data/MBON dataset registration (Responses) - Form Responses 1.csv")) %>%
+  filter(Which.MBON.project.is.this.dataset.associated.with. == params$project_id)
+```
+
+```{R}
+print(data$Dataset.title)
+```
