@@ -7,6 +7,8 @@ code-fold: true
 
 ```{R}
 #| code-summary: setup
+#| message: false
+#| warning: false
 if (!requireNamespace("librarian", quietly = TRUE)) {
   # If not installed, install the package
   install.packages("librarian")
@@ -24,6 +26,7 @@ librarian::shelf(
 ```
 
 ```{R}
+#| code-summary: read in data from csv
 data <- read.csv("data/MBON dataset registration (Responses) - Form Responses 1.csv")
 ```
 
@@ -52,7 +55,8 @@ print(skimmed_data)
 
 ```{R}
 #| code-summary: create word cloud from titles & descriptions
-
+#| message: false
+#| warning: false
 combined_text <- paste(data$`Dataset.title`, data$`Dataset.summary`, collapse = " ")
 corpus <- Corpus(VectorSource(combined_text))
 

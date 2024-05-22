@@ -13,6 +13,8 @@ execute:
 
 ```{R}
 #| code-summary: setup
+#| message: false
+#| warning: false
 if (!requireNamespace("librarian", quietly = TRUE)) {
   # If not installed, install the package
   install.packages("librarian")
@@ -33,5 +35,6 @@ data <- read.csv(here("data/MBON dataset registration (Responses) - Form Respons
 ```
 
 ```{R}
+#| code-summary: show dataset titles
 print(data$Dataset.title)
 ```
