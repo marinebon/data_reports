@@ -17,6 +17,7 @@ if (!requireNamespace("librarian", quietly = TRUE)) {
 librarian::shelf(
   dplyr,
   ggplot2,
+  here,
   networkD3,
   skimr,
   tm,
@@ -27,18 +28,8 @@ librarian::shelf(
 
 ```{R}
 #| code-summary: read in data from csv
-data <- read.csv("data/MBON dataset registration (Responses) - Form Responses 1.csv")
-```
-
-```{R}
-#| code-summary: rename columns
-data <- data %>%
-  rename(
-    mbon.project = Which.MBON.project.is.this.dataset.associated.with.,
-    RA = If.you.have.worked.with.a.Regional.Association..please.indicate.which.one.s..,
-    erddap = Has.the.dataset.been.loaded.into.ERDDAP.
-  )
-
+source(here("R/getCleanedData.R"))
+data <- getCleanedData()
 ```
 
 ```{R}
