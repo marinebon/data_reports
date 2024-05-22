@@ -1,5 +1,7 @@
+library("dplyr")
+library("here")
 getCleanedData <- function(){
-  data <- read.csv("data/MBON dataset registration (Responses) - Form Responses 1.csv")
+  data <- read.csv(here("data/MBON dataset registration (Responses) - Form Responses 1.csv"))
   
   data <- data %>%
     rename(  # shorten column names

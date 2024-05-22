@@ -4,6 +4,7 @@ REPORTS_DIR = "regional_report/regional_reports"
 
 library(whisker)
 library(glue)
+library(here)
 
 # Proceed if rendering the whole project, exit otherwise
 if (!nzchar(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"))) {
@@ -19,10 +20,11 @@ templ <- gsub(
 dir.create(REPORTS_DIR, showWarnings=FALSE)
 
 # === iterate through the data structure 
-data <- read.csv("data/MBON dataset registration (Responses) - Form Responses 1.csv")
+source(here("R/getCleanedData.R"))
+data <- getCleanedData()
 
 # print unique values in `Parameter` column
-unique_parameters <- unique(data$`Which.MBON.project.is.this.dataset.associated.with.`)
+unique_parameters <- unique(data$`mbon.project`)
 
 for (param in unique_parameters) {
   params = list(

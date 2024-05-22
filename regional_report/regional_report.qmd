@@ -30,8 +30,9 @@ librarian::shelf(
 # `r params$project_id` Report
 ```{R}
 #| code-summary: load data
-data <- read.csv(here("data/MBON dataset registration (Responses) - Form Responses 1.csv")) %>%
-  filter(Which.MBON.project.is.this.dataset.associated.with. == params$project_id)
+source(here("R/getCleanedData.R"))
+data <- getCleanedData() %>%
+  filter(mbon.project == params$project_id)
 ```
 
 ```{R}
