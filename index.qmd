@@ -19,7 +19,6 @@ librarian::shelf(
   ggplot2,
   here,
   networkD3,
-  skimr,
   tm,
   wordcloud
 )
@@ -32,17 +31,6 @@ source(here("R/getCleanedData.R"))
 data <- getCleanedData()
 ```
 
-```{R}
-#| code-summary: Print basic diagnostic information
-# print(head(data))     # View first few rows
-# print(str(data))      # Structure of the data frame
-# print(summary(data))  # Statistical summary of the data
-#  Use skimr to provide a detailed summary
-skimmed_data <- skimr::skim(data)
-print(skimmed_data)
-
-# skimr::skim_tee(data)
-```
 
 ```{R}
 #| code-summary: create word cloud from titles & descriptions
@@ -77,31 +65,45 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 1,
 
 ```{R}
 #| code-summary: create a sankey diagram
-
-# Merge values with same meaning or replace with more meaningul strings
+yes_values <- c("yes")
+no_values <- c("no", "no (in progress)", "no (latest revision in progress)", "none")
 data <- data %>%
   mutate(
-    RA = ifelse(RA == "", "No RA", RA),
-    erddap = ifelse(tolower(erddap) == "yes",         "in ERDDAP",     erddap),
-    erddap = ifelse(tolower(erddap) %in% c("no", ""), "not in ERDDAP", erddap)
+    RA =     ifelse(tolower(RA)     %in% no_values,   "",          RA),
+    erddap = ifelse(tolower(erddap) %in% yes_values,       "in ERDDAP", erddap),
+    erddap = ifelse(tolower(erddap) %in% no_values, "",          erddap),
+    obis = ifelse(tolower(obis) %in% no_values, "", obis),
+    obis = ifelse(tolower(obis) %in% yes_values, "in OBIS", obis),
+    ncei = ifelse(tolower(ncei) %in% no_values, "", ncei),
+    ncei = ifelse(tolower(ncei) %in% yes_values, "in NCEI", ncei)
   )
 
-# Create links data frame for mbon.project -> RA and RA -> erddap
-links_mbon_ra <- data.frame(
-  source = data$mbon.project,
-  target = data$RA,
-  value = 1  # You can adjust this value as needed
-)
-
-links_ra_erddap <- data.frame(
-  source = data$RA,
-  target = data$erddap,
-  value = 1  # You can adjust this value as needed
-)
-
-# Combine the links data frames
-links <- rbind(links_mbon_ra, links_ra_erddap)
-
+# Create links data frames for each column pair and merge them together
+links <- rbind(
+  data.frame(
+    source = data$RA,
+    target = data$erddap,
+    value = 1
+  ), 
+  data.frame(
+    source = data$RA,
+    target = data$obis,
+    value = 1
+  ),
+  data.frame(
+    source = data$RA,
+    target = data$ncei,
+    value = 1
+  )
+) %>%
+  filter_all(all_vars(. != ""))  %>% # drop anything that is empty
+  rbind(
+    data.frame(
+      source = data$mbon.project,
+      target = data$RA,
+      value = 1
+    )
+  )
 # Create nodes data frame
 nodes <- data.frame(
   name = c(as.character(links$source), as.character(links$target)) %>% unique()
