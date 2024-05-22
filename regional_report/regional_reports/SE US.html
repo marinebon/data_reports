@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-hash="SE-US_cache/html/unnamed-chunk-1_ea80d6bc1450ab155691b3d6928b3e88">
+<div class="cell" data-hash="SE-US_cache/html/unnamed-chunk-1_8718247423d2f609638091cfc29ced25">
 <details>
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"librarian"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
@@ -179,21 +179,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="se-us-report" class="level1">
 <h1>SE US Report</h1>
-<div class="cell" data-hash="SE-US_cache/html/unnamed-chunk-2_a369ee3be6faf28f397b2d4a44ca1ec2">
+<div class="cell" data-hash="SE-US_cache/html/unnamed-chunk-2_58bdb44ce8ed6736ec7eab6a8531ee1a">
 <details>
 <summary>load data</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data/MBON dataset registration (Responses) - Form Responses 1.csv"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Which.MBON.project.is.this.dataset.associated.with. <span class="sc">==</span> params<span class="sc">$</span>project_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/getCleanedData.R"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">getCleanedData</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mbon.project <span class="sc">==</span> params<span class="sc">$</span>project_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="SE-US_cache/html/unnamed-chunk-3_aba61065cc5239675c10edec8ecce92e">
+<div class="cell" data-hash="SE-US_cache/html/unnamed-chunk-3_2c95966b8b3dd8aac5779881b6a60b84">
 <details>
-<summary>Code</summary>
+<summary>show dataset titles</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data<span class="sc">$</span>Dataset.title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Time series of zooplankton abundance of the South Florida Program / Sanctuaries Marine Biodiversity Observation Network programs"
-[2] "Time series of zooplankton abundance in South Florida from 2015 onward (MBON program)"                                           </code></pre>
+[2] "Time series of zooplankton abundance in South Florida from 2015 onward (MBON program)"                                           
+[3] "Marine zooplankton community from coral reef sites in the Florida Keys National\nMarine Sanctuary (2015-2016)"                   </code></pre>
 </div>
 </div>
 

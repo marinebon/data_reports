@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-hash="Southern-California-Bight_cache/html/unnamed-chunk-1_357858f4837b857c76c0dfbec71598c8">
+<div class="cell" data-hash="Southern-California-Bight_cache/html/unnamed-chunk-1_3cf5e1acbbc81026f0d757d0b9c01604">
 <details>
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"librarian"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
@@ -179,16 +179,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="southern-california-bight-report" class="level1">
 <h1>Southern California Bight Report</h1>
-<div class="cell" data-hash="Southern-California-Bight_cache/html/unnamed-chunk-2_d3e30cca199c754ed0e1f7e29dbdbd45">
+<div class="cell" data-hash="Southern-California-Bight_cache/html/unnamed-chunk-2_2d00dec1fa13474405228189155e62a0">
 <details>
 <summary>load data</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">"data/MBON dataset registration (Responses) - Form Responses 1.csv"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Which.MBON.project.is.this.dataset.associated.with. <span class="sc">==</span> params<span class="sc">$</span>project_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/getCleanedData.R"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">getCleanedData</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mbon.project <span class="sc">==</span> params<span class="sc">$</span>project_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="Southern-California-Bight_cache/html/unnamed-chunk-3_d127981c2f57cb6d3e5bbb6fb86d7e81">
+<div class="cell" data-hash="Southern-California-Bight_cache/html/unnamed-chunk-3_977878717a8e4a0f3e550e1ce5c657e3">
 <details>
-<summary>Code</summary>
+<summary>show dataset titles</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data<span class="sc">$</span>Dataset.title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
