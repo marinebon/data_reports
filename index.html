@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-1_6d1e9c566a5641a3dc2549f4b8ce678c">
+<div class="cell">
 <details>
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"librarian"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
@@ -181,204 +181,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ggplot2,</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  here,</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  networkD3,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  skimr,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  tm,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  wordcloud</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  tm,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  wordcloud</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-2_cd45b5852cc50ee5656f8a4049dc597b">
+<div class="cell">
 <details>
 <summary>read in data from csv</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/getCleanedData.R"</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">getCleanedData</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-3_67133d0ead408cf9bc0f31c45e41cb67">
-<details>
-<summary>Print basic diagnostic information</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print(head(data))     # View first few rows</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(str(data))      # Structure of the data frame</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(summary(data))  # Statistical summary of the data</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  Use skimr to provide a detailed summary</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>skimmed_data <span class="ot">&lt;-</span> skimr<span class="sc">::</span><span class="fu">skim</span>(data)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(skimmed_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>── Data Summary ────────────────────────
-                           Values
-Name                       data  
-Number of rows             47    
-Number of columns          36    
-_______________________          
-Column type frequency:           
-  character                35    
-  logical                  1     
-________________________         
-Group variables            None  
-
-── Variable type: character ────────────────────────────────────────────────────
-   skim_variable                                                                
- 1 Timestamp                                                                    
- 2 Dataset.title                                                                
- 3 Dataset.summary                                                              
- 4 Is.there.a.DOI.or.existing.citation.for.the.dataset.                         
- 5 Who.is.the.data.management.POC.for.the.dataset.                              
- 6 Data.management.POC.email.                                                   
- 7 Who.is.the.technical.POC.for.the.dataset.                                    
- 8 Technical.POC.email.                                                         
- 9 mbon.project                                                                 
-10 RA                                                                           
-11 Are.there.any.deadlines.associated.with.this.dataset.                        
-12 Are.the.data.accessible.via.the.web.                                         
-13 If.yes.to.above..please.include.appropriate.link.s..here.                    
-14 erddap                                                                       
-15 If.yes.to.above..please.include.appropriate.ERDDAP.link.s..here.             
-16 Has.the.dataset.been.translated.into.DarwinCore.                             
-17 Has.the.dataset.been.submitted.to.OBIS.                                      
-18 If.yes.to.above..please.include.appropriate.OBIS.link.s..here.               
-19 Has.the.dataset.been.archived.at.NCEI.                                       
-20 If.yes.to.above..please.include.appropriate.NCEI.link.s..here.               
-21 What.is.the.current.format.of.the.data.                                      
-22 What.is.the.current.format.of.the.metadata.                                  
-23 How.frequently.will.the.data.be.updated.                                     
-24 Are.there.any.relationships.this.dataset.has.with.other.observations.        
-25 Are.there.any.specific.visualizations.requested.for.the.dataset.             
-26 Is.the.dataset.affiliated.with.other.programs..For.example..BOEM.            
-27 Upload.the.dataset.                                                          
-28 Are.there.scripts.or.code.used.to.process.the.data.                          
-29 If.yes.to.above..and.they.are.publicly.available..please.include.appropriate…
-30 If.yes.to.above..and.the.code.is.available..please.include.appropriate.link.…
-31 Would.you.like.this.dataset.visualized.in.the.MBON.Data.Portal..https...mbon…
-32 Email.Address                                                                
-33 If.the.dataset.is.already.visualized.in.the.MBON.data.portal..please.include…
-34 What.is.the.expected.timeline.for.this.dataset.                              
-35 X.1                                                                          
-   n_missing complete_rate min  max empty n_unique whitespace
- 1         0         1       0   19     8       18          0
- 2         0         1      21  209     0       46          0
- 3         0         1       0 1778     9       39          0
- 4         0         1       0  590     9       30          0
- 5         0         1       0   97     9       14          0
- 6         0         1       0   52     9       14          0
- 7         0         1       0   93     9       16          0
- 8         0         1       0   52     9       16          0
- 9         0         1       0   30     9       10          0
-10         0         1       0   14    10        9          0
-11         1         0.979   0  216    29       10          0
-12         0         1       0    3     8        4          0
-13         0         1       0  211    10       38          0
-14         0         1       0    3    26        4          0
-15         2         0.957   0   74    36        5          0
-16         0         1       0    3    28        4          0
-17         0         1       0   32     1        6          0
-18         2         0.957   0  132    27       18          0
-19         0         1       0    7     9        4          0
-20         1         0.979   0  137    40        6          0
-21         0         1       0  164     8       10          0
-22         0         1       0   79     9       10          0
-23         0         1       0   38    19        8          0
-24         0         1       0  438    31       15          0
-25         0         1       0  194    31       15          0
-26         0         1       0  130    13       23          0
-27         0         1       0   66    42        6          0
-28         0         1       0    3    31        3          0
-29         1         0.979   0  143    37       10          0
-30         0         1       0   91    41        6          0
-31         0         1       0   30    31        4          0
-32         0         1       0   34    37        9          0
-33         2         0.957   0  111    41        5          0
-34         0         1       0  304    39        9          0
-35         0         1       0  117    46        2          0
-
-── Variable type: logical ──────────────────────────────────────────────────────
-  skim_variable n_missing complete_rate mean count
-1 X                    47             0  NaN ": " </code></pre>
-</div>
-<details>
-<summary>Print basic diagnostic information</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># skimr::skim_tee(data)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-4_7619838c6b332111bff5786ce0de8249">
+<div class="cell">
 <details>
 <summary>create word cloud from titles &amp; descriptions</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>combined_text <span class="ot">&lt;-</span> <span class="fu">paste</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Dataset.title</span><span class="st">`</span>, data<span class="sc">$</span><span class="st">`</span><span class="at">Dataset.summary</span><span class="st">`</span>, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">Corpus</span>(<span class="fu">VectorSource</span>(combined_text))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the text data</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>toSpace <span class="ot">&lt;-</span> <span class="fu">content_transformer</span>(<span class="cf">function</span>(x, pattern) <span class="fu">gsub</span>(pattern, <span class="st">" "</span>, x))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, toSpace, <span class="st">"/"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, toSpace, <span class="st">"@"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, toSpace, <span class="st">"</span><span class="sc">\\</span><span class="st">|"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, <span class="fu">content_transformer</span>(tolower))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, removePunctuation)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, removeNumbers)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, removeWords, <span class="fu">stopwords</span>(<span class="st">"english"</span>))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, stripWhitespace)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Term-Document Matrix</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>dtm <span class="ot">&lt;-</span> <span class="fu">TermDocumentMatrix</span>(corpus)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(dtm)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>word_freqs <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rowSums</span>(matrix), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">word =</span> <span class="fu">names</span>(word_freqs), <span class="at">freq =</span> word_freqs)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the word cloud</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="at">words =</span> df<span class="sc">$</span>word, <span class="at">freq =</span> df<span class="sc">$</span>freq, <span class="at">min.freq =</span> <span class="dv">1</span>, </span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">max.words =</span> <span class="dv">100</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_text <span class="ot">&lt;-</span> <span class="fu">paste</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Dataset.title</span><span class="st">`</span>, data<span class="sc">$</span><span class="st">`</span><span class="at">Dataset.summary</span><span class="st">`</span>, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">Corpus</span>(<span class="fu">VectorSource</span>(combined_text))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the text data</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>toSpace <span class="ot">&lt;-</span> <span class="fu">content_transformer</span>(<span class="cf">function</span>(x, pattern) <span class="fu">gsub</span>(pattern, <span class="st">" "</span>, x))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, toSpace, <span class="st">"/"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, toSpace, <span class="st">"@"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, toSpace, <span class="st">"</span><span class="sc">\\</span><span class="st">|"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, <span class="fu">content_transformer</span>(tolower))</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, removePunctuation)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, removeNumbers)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, removeWords, <span class="fu">stopwords</span>(<span class="st">"english"</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>corpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(corpus, stripWhitespace)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Term-Document Matrix</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>dtm <span class="ot">&lt;-</span> <span class="fu">TermDocumentMatrix</span>(corpus)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(dtm)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>word_freqs <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">rowSums</span>(matrix), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">word =</span> <span class="fu">names</span>(word_freqs), <span class="at">freq =</span> word_freqs)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the word cloud</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="at">words =</span> df<span class="sc">$</span>word, <span class="at">freq =</span> df<span class="sc">$</span>freq, <span class="at">min.freq =</span> <span class="dv">1</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">max.words =</span> <span class="dv">100</span>, <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-5_99811d7ad50ef94d3c2d132f0a9e667f">
+<div class="cell">
 <details>
 <summary>create a sankey diagram</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge values with same meaning or replace with more meaningul strings</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">RA =</span> <span class="fu">ifelse</span>(RA <span class="sc">==</span> <span class="st">""</span>, <span class="st">"No RA"</span>, RA),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">erddap =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(erddap) <span class="sc">==</span> <span class="st">"yes"</span>,         <span class="st">"in ERDDAP"</span>,     erddap),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">erddap =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(erddap) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"no"</span>, <span class="st">""</span>), <span class="st">"not in ERDDAP"</span>, erddap)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create links data frame for mbon.project -&gt; RA and RA -&gt; erddap</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>links_mbon_ra <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">source =</span> data<span class="sc">$</span>mbon.project,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">target =</span> data<span class="sc">$</span>RA,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="dv">1</span>  <span class="co"># You can adjust this value as needed</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>links_ra_erddap <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">source =</span> data<span class="sc">$</span>RA,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">target =</span> data<span class="sc">$</span>erddap,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="dv">1</span>  <span class="co"># You can adjust this value as needed</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the links data frames</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">rbind</span>(links_mbon_ra, links_ra_erddap)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create nodes data frame</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="fu">as.character</span>(links<span class="sc">$</span>source), <span class="fu">as.character</span>(links<span class="sc">$</span>target)) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformat the links with IDs</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>links<span class="sc">$</span>IDsource <span class="ot">&lt;-</span> <span class="fu">match</span>(links<span class="sc">$</span>source, nodes<span class="sc">$</span>name) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>links<span class="sc">$</span>IDtarget <span class="ot">&lt;-</span> <span class="fu">match</span>(links<span class="sc">$</span>target, nodes<span class="sc">$</span>name) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the Network</span></span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> networkD3<span class="sc">::</span><span class="fu">sankeyNetwork</span>(<span class="at">Links =</span> links, <span class="at">Nodes =</span> nodes,</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Source =</span> <span class="st">"IDsource"</span>, <span class="at">Target =</span> <span class="st">"IDtarget"</span>,</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sinksRight =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>yes_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"yes"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>no_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"no"</span>, <span class="st">"no (in progress)"</span>, <span class="st">"no (latest revision in progress)"</span>, <span class="st">"none"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">RA =</span>     <span class="fu">ifelse</span>(<span class="fu">tolower</span>(RA)     <span class="sc">%in%</span> no_values,   <span class="st">""</span>,          RA),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">erddap =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(erddap) <span class="sc">%in%</span> yes_values,       <span class="st">"in ERDDAP"</span>, erddap),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">erddap =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(erddap) <span class="sc">%in%</span> no_values, <span class="st">""</span>,          erddap),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">obis =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(obis) <span class="sc">%in%</span> no_values, <span class="st">""</span>, obis),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">obis =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(obis) <span class="sc">%in%</span> yes_values, <span class="st">"in OBIS"</span>, obis),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncei =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(ncei) <span class="sc">%in%</span> no_values, <span class="st">""</span>, ncei),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncei =</span> <span class="fu">ifelse</span>(<span class="fu">tolower</span>(ncei) <span class="sc">%in%</span> yes_values, <span class="st">"in NCEI"</span>, ncei)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create links data frames for each column pair and merge them together</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>links <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> data<span class="sc">$</span>RA,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> data<span class="sc">$</span>erddap,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="dv">1</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> data<span class="sc">$</span>RA,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> data<span class="sc">$</span>obis,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="dv">1</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">source =</span> data<span class="sc">$</span>RA,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">target =</span> data<span class="sc">$</span>ncei,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="dv">1</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_all</span>(<span class="fu">all_vars</span>(. <span class="sc">!=</span> <span class="st">""</span>))  <span class="sc">%&gt;%</span> <span class="co"># drop anything that is empty</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rbind</span>(</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">source =</span> data<span class="sc">$</span>mbon.project,</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">target =</span> data<span class="sc">$</span>RA,</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> <span class="dv">1</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Create nodes data frame</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>nodes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="fu">as.character</span>(links<span class="sc">$</span>source), <span class="fu">as.character</span>(links<span class="sc">$</span>target)) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformat the links with IDs</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>links<span class="sc">$</span>IDsource <span class="ot">&lt;-</span> <span class="fu">match</span>(links<span class="sc">$</span>source, nodes<span class="sc">$</span>name) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>links<span class="sc">$</span>IDtarget <span class="ot">&lt;-</span> <span class="fu">match</span>(links<span class="sc">$</span>target, nodes<span class="sc">$</span>name) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Make the Network</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> networkD3<span class="sc">::</span><span class="fu">sankeyNetwork</span>(<span class="at">Links =</span> links, <span class="at">Nodes =</span> nodes,</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Source =</span> <span class="st">"IDsource"</span>, <span class="at">Target =</span> <span class="st">"IDtarget"</span>,</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Value =</span> <span class="st">"value"</span>, <span class="at">NodeID =</span> <span class="st">"name"</span>,</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>                   <span class="at">sinksRight =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-53e10be2095badbad9ef" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-53e10be2095badbad9ef">{"x":{"links":{"source":[0,1,2,2,3,4,5,5,2,2,2,6,3,3,7,7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,10,11,12,12,13,14,15,15,12,12,12,16,13,17,18,16,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,18,18,18,18,18,18,18,18,18],"target":[10,11,12,12,13,14,15,15,12,12,12,16,13,17,18,16,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,18,18,18,18,18,18,18,18,18,19,20,20,20,20,19,20,20,20,20,20,19,20,20,20,20,19,20,20,19,20,20,20,20,20,20,19,19,20,20,20,20,20,19,20,20,20,20,20,20,20,20,20,20,20,20,20],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"nodes":{"name":["Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","New Hampshire and Casco Bay","Southern California Bight","","SCCOOS","AOOS","CeNCOOS","GCOOS","SECOORA, GCOOS","GLOS, None","NERACOOS","None","No RA","in ERDDAP","not in ERDDAP"],"group":["Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","New Hampshire and Casco Bay","Southern California Bight","","SCCOOS","AOOS","CeNCOOS","GCOOS","SECOORA, GCOOS","GLOS, None","NERACOOS","None","No RA","in ERDDAP","not in ERDDAP"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":null,"nodeWidth":15,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-16775f1ad017f0f0fb0a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-16775f1ad017f0f0fb0a">{"x":{"links":{"source":[0,1,2,0,0,0,0,0,0,3,4,5,4,4,4,2,5,3,3,3,3,3,3,3,3,6,7,8,8,9,10,11,11,8,8,8,12,9,9,13,13,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,15,16,16,16,16,16,16,16],"target":[17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,0,3,4,4,5,1,20,20,4,4,4,2,5,15,15,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,15,3,3,3,3,3,3,3],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"nodes":{"name":["SCCOOS","SECOORA, GCOOS","NERACOOS","AOOS","CeNCOOS","GCOOS","Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","New Hampshire and Casco Bay","Southern California Bight","","AMBON","in ERDDAP","in OBIS","in NCEI","GLOS, None"],"group":["SCCOOS","SECOORA, GCOOS","NERACOOS","AOOS","CeNCOOS","GCOOS","Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","New Hampshire and Casco Bay","Southern California Bight","","AMBON","in ERDDAP","in OBIS","in NCEI","GLOS, None"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":null,"nodeWidth":15,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
