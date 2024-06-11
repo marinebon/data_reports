@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MBON Data Report - AMBON</title>
+<title>MBON Data Report - Coastal New England</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ambon-report" id="toc-ambon-report" class="nav-link active" data-scroll-target="#ambon-report">AMBON Report</a></li>
+  <li><a href="#coastal-new-england-report" id="toc-coastal-new-england-report" class="nav-link active" data-scroll-target="#coastal-new-england-report">Coastal New England Report</a></li>
   </ul>
 </nav>
     </div>
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">AMBON</h1>
+<h1 class="title">Coastal New England</h1>
 </div>
 
 
@@ -163,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell">
+<div class="cell" data-hash="Coastal-New-England_cache/html/unnamed-chunk-1_1a2d8d99f3a1512618c1c5623caaf40c">
 <details>
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"librarian"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
@@ -177,9 +177,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="ambon-report" class="level1">
-<h1>AMBON Report</h1>
-<div class="cell">
+<section id="coastal-new-england-report" class="level1">
+<h1>Coastal New England Report</h1>
+<div class="cell" data-hash="Coastal-New-England_cache/html/unnamed-chunk-2_c124438bc7c17ec3b3ab383b8ec81407">
 <details>
 <summary>load data</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/getCleanedData.R"</span>))</span>
@@ -187,19 +187,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mbon.project <span class="sc">==</span> params<span class="sc">$</span>project_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="Coastal-New-England_cache/html/unnamed-chunk-3_0cc8829d54171421219393164678cd5a">
 <details>
 <summary>show dataset titles</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data<span class="sc">$</span>Dataset.title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Benthic Epifauna Biomass and Abundance Data, Arctic Marine Biodiversity Observing Network (AMBON) research cruise, August 2017"                                                                                   
-[2] "Fish length, weight, and abundance data from trawl surveys in the Chukchi Sea, Arctic Marine Biodiversity Observing Network (AMBON) research cruise on the vessel Norseman II, 09 August 2015 - 03 September 2015"
-[3] "Marine Bird Sighting Data, Arctic Marine Biodiversity Observing Network (AMBON) Chukchi Sea research cruise on the vessel Norseman II from 2017-08-05 to 2017-08-25"                                              
-[4] "Marine Bird Sighting Data, Arctic Marine Biodiversity Observing Network (AMBON) Chukchi Sea research cruise on the vessel Norseman II from 2015-08-09 to 2015-09-03"                                              
-[5] "Vessel line-transect surveys of Arctic cetaceans in the Chuckchi Sea, Arctic Marine Biodiversity Observing Network (AMBON) research cruise on the vessel Norseman II, 2015-08-09 - 2015-09-03"                    
-[6] "Vessel line-transect surveys of Arctic pinnipeds in the Chuckchi Sea, Arctic Marine Biodiversity Observing Network (AMBON) research cruise on the vessel Norseman II, 2015-08-09 - 2015-09-03"                    
-[7] "Vessel line-transect surveys of Arctic marine mammals in the Chuckchi Sea, Arctic Marine Biodiversity Observing Network (AMBON) research cruise on the vessel Norseman II from 2017-08-05 to - 2017-08-25"        </code></pre>
+<pre><code>[1] "CNEMBON: Atlantic cod acoustic telemetry 2023-2025"
+[2] "Coastal New England MBON: active acoustics"        </code></pre>
 </div>
 </div>
 

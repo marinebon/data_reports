@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-1_a1d88288c8aa9b57496e1ab6d51d55f1">
 <details>
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"librarian"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
@@ -186,14 +186,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-2_cd45b5852cc50ee5656f8a4049dc597b">
 <details>
 <summary>read in data from csv</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/getCleanedData.R"</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">getCleanedData</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-3_0e6197e4ec4281fed4f4341c2d5bc528">
 <details>
 <summary>create word cloud from titles &amp; descriptions</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_text <span class="ot">&lt;-</span> <span class="fu">paste</span>(data<span class="sc">$</span><span class="st">`</span><span class="at">Dataset.title</span><span class="st">`</span>, data<span class="sc">$</span><span class="st">`</span><span class="at">Dataset.summary</span><span class="st">`</span>, <span class="at">collapse =</span> <span class="st">" "</span>)</span>
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-4_6b973f351796686bd041a45e5f877dc5">
 <details>
 <summary>create a sankey diagram</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>yes_values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"yes"</span>)</span>
@@ -285,8 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-16775f1ad017f0f0fb0a" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-16775f1ad017f0f0fb0a">{"x":{"links":{"source":[0,1,2,0,0,0,0,0,0,3,4,5,4,4,4,2,5,3,3,3,3,3,3,3,3,6,7,8,8,9,10,11,11,8,8,8,12,9,9,13,13,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,15,16,16,16,16,16,16,16],"target":[17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,19,0,3,4,4,5,1,20,20,4,4,4,2,5,15,15,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,15,3,3,3,3,3,3,3],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"nodes":{"name":["SCCOOS","SECOORA, GCOOS","NERACOOS","AOOS","CeNCOOS","GCOOS","Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","New Hampshire and Casco Bay","Southern California Bight","","AMBON","in ERDDAP","in OBIS","in NCEI","GLOS, None"],"group":["SCCOOS","SECOORA, GCOOS","NERACOOS","AOOS","CeNCOOS","GCOOS","Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","New Hampshire and Casco Bay","Southern California Bight","","AMBON","in ERDDAP","in OBIS","in NCEI","GLOS, None"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":null,"nodeWidth":15,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sankeyNetwork html-widget html-fill-item" id="htmlwidget-8b9476563147d2ed8de2" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-8b9476563147d2ed8de2">{"x":{"links":{"source":[0,1,2,0,0,0,0,0,0,3,4,5,4,4,4,2,5,3,3,3,3,3,3,3,3,6,7,8,8,9,10,11,11,8,8,8,12,9,9,13,13,7,7,7,7,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,15,7,7,7,7,7,7,7],"target":[16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,18,0,3,4,4,5,1,19,19,4,4,4,2,5,15,15,2,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15,15,3,3,3,3,3,3,3],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"nodes":{"name":["SCCOOS","SECOORA, GCOOS","NERACOOS","AOOS","CeNCOOS","GCOOS","Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","Coastal New England","Southern California Bight","","in ERDDAP","in OBIS","in NCEI","GLOS, None"],"group":["SCCOOS","SECOORA, GCOOS","NERACOOS","AOOS","CeNCOOS","GCOOS","Southern California","Arctic","Central California","SE US","All - this is a global dataset","GLOS MBON","Gulf of Maine","Coastal New England","Southern California Bight","","in ERDDAP","in OBIS","in NCEI","GLOS, None"]},"options":{"NodeID":"name","NodeGroup":"name","LinkGroup":null,"colourScale":"d3.scaleOrdinal(d3.schemeCategory20);","fontSize":7,"fontFamily":null,"nodeWidth":15,"nodePadding":10,"units":"","margin":{"top":null,"right":null,"bottom":null,"left":null},"iterations":32,"sinksRight":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
