@@ -63,19 +63,29 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 1,
           colors = brewer.pal(8, "Dark2"))
 ```
 
+
 ```{R}
-#| code-summary: create a sankey diagram
+#| code-summary: sankey diagrams setup
 yes_values <- c("yes")
 no_values <- c("no", "no (in progress)", "no (latest revision in progress)", "none")
+```
+```{R}
+#| code-summary: sankey diagram of regional programs to IOOS RAs
 data <- data %>%
   mutate(
     RA =     ifelse(tolower(RA)     %in% no_values,   "",          RA),
+    
     erddap = ifelse(tolower(erddap) %in% yes_values,       "in ERDDAP", erddap),
     erddap = ifelse(tolower(erddap) %in% no_values, "",          erddap),
+    
     obis = ifelse(tolower(obis) %in% no_values, "", obis),
     obis = ifelse(tolower(obis) %in% yes_values, "in OBIS", obis),
+    
     ncei = ifelse(tolower(ncei) %in% no_values, "", ncei),
-    ncei = ifelse(tolower(ncei) %in% yes_values, "in NCEI", ncei)
+    ncei = ifelse(tolower(ncei) %in% yes_values, "in NCEI", ncei),
+    
+    web.link = ifelse(tolower(web.link) %in% no_values, "", web.link),
+    web.link = ifelse(tolower(web.link) %in% yes_values, "on www", web.link)
   )
 
 # Create links data frames for each column pair and merge them together
@@ -93,6 +103,11 @@ links <- rbind(
   data.frame(
     source = data$RA,
     target = data$ncei,
+    value = 1
+  ),
+  data.frame(
+    source = data$RA,
+    target = data$web.link,
     value = 1
   )
 ) %>%

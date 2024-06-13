@@ -9,7 +9,8 @@ getCleanedData <- function(){
       RA = If.you.have.worked.with.a.Regional.Association..please.indicate.which.one.s..,
       erddap = Has.the.dataset.been.loaded.into.ERDDAP.,
       obis = Has.the.dataset.been.submitted.to.OBIS.,
-      ncei = Has.the.dataset.been.archived.at.NCEI.
+      ncei = Has.the.dataset.been.archived.at.NCEI.,
+      web.link = Are.the.data.accessible.via.the.web.
     ) %>%  # trim whitespace on edges
     mutate(across(where(is.character), trimws))
  
