@@ -86,6 +86,6 @@ sankey2layer <- function(df, layer1, layer2cols){
 
 ```{R}
 #| code-summary: sankey diagram of data mobilization
-sankey2layer(data, "Dataset.title", c("erddap", "obis", "ncei", "web.link"))
+sankey2layer(data, "Dataset.title", c("erddap", "obis", "ncei"))# "web_link"))
 ```
 

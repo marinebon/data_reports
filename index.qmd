@@ -69,6 +69,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 1,
 yes_values <- c("yes")
 no_values <- c("no", "no (in progress)", "no (latest revision in progress)", "none")
 ```
+
 ```{R}
 #| code-summary: sankey diagram of regional programs to IOOS RAs
 data <- data %>%
@@ -82,10 +83,10 @@ data <- data %>%
     obis = ifelse(tolower(obis) %in% yes_values, "in OBIS", obis),
     
     ncei = ifelse(tolower(ncei) %in% no_values, "", ncei),
-    ncei = ifelse(tolower(ncei) %in% yes_values, "in NCEI", ncei),
+    ncei = ifelse(tolower(ncei) %in% yes_values, "in NCEI", ncei)
     
-    web.link = ifelse(tolower(web.link) %in% no_values, "", web.link),
-    web.link = ifelse(tolower(web.link) %in% yes_values, "on www", web.link)
+    # web_link = ifelse(tolower(web_link) %in% no_values, "", web_link),
+    # web_link = ifelse(tolower(web_link) %in% yes_values, "on www", web_link)
   )
 
 # Create links data frames for each column pair and merge them together
@@ -104,12 +105,12 @@ links <- rbind(
     source = data$RA,
     target = data$ncei,
     value = 1
-  ),
-  data.frame(
-    source = data$RA,
-    target = data$web.link,
-    value = 1
   )
+  # data.frame(
+  #   source = data$RA,
+  #   target = data$web_link,
+  #   value = 1
+  # )
 ) %>%
   filter_all(all_vars(. != ""))  %>% # drop anything that is empty
   rbind(
@@ -133,5 +134,5 @@ p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes,
                    Source = "IDsource", Target = "IDtarget",
                    Value = "value", NodeID = "name",
                    sinksRight = FALSE)
-p
+print(p)
 ```
