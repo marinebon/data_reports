@@ -43,64 +43,49 @@ print(data$Dataset.title)
 #| code-summary: sankey diagrams setup
 yes_values <- c("yes")
 no_values <- c("no", "no (in progress)", "no (latest revision in progress)", "none")
+
+sankey2layer <- function(df, layer1, layer2cols){ 
+  for (col in layer2cols){
+    df <- df %>%
+    mutate(
+      col = ifelse(tolower(col) %in% yes_values, col, col),
+      col = ifelse(tolower(col) %in% no_values, "", col)
+    )
+  }
+  links <- data.frame()
+  for (col in layer2cols){
+    links <- rbind(
+      links,
+      data.frame(
+        source = df[[layer1]],
+        target = df[[col]],
+        value = 1
+      )
+    )
+  }
+  links %>%
+    filter_all(all_vars(. != "")) # drop anything that is empty
+  
+  # Create nodes data frame
+  nodes <- data.frame(
+    name = c(as.character(links$source), as.character(links$target)) %>% unique()
+  )
+  
+  # Reformat the links with IDs
+  links$IDsource <- match(links$source, nodes$name) - 1
+  links$IDtarget <- match(links$target, nodes$name) - 1
+  
+  # Make the Network
+  p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes,
+                     Source = "IDsource", Target = "IDtarget",
+                     Value = "value", NodeID = "name",
+                     sinksRight = FALSE)
+  return(p)
+}
 ```
+
 ```{R}
 #| code-summary: sankey diagram of data mobilization
-data <- data %>%
-  mutate(
-    RA =     ifelse(tolower(RA)     %in% no_values,   "",          RA),
-    
-    erddap = ifelse(tolower(erddap) %in% yes_values,       "in ERDDAP", erddap),
-    erddap = ifelse(tolower(erddap) %in% no_values, "",          erddap),
-    
-    obis = ifelse(tolower(obis) %in% no_values, "", obis),
-    obis = ifelse(tolower(obis) %in% yes_values, "in OBIS", obis),
-    
-    ncei = ifelse(tolower(ncei) %in% no_values, "", ncei),
-    ncei = ifelse(tolower(ncei) %in% yes_values, "in NCEI", ncei),
-    
-    web.link = ifelse(tolower(web.link) %in% no_values, "", web.link),
-    web.link = ifelse(tolower(web.link) %in% yes_values, "on www", web.link)
-  )
-
-# Create links data frames for each column pair and merge them together
-links <- rbind(
-  data.frame(
-    source = data$Dataset.title,
-    target = data$erddap,
-    value = 1
-  ), 
-  data.frame(
-    source = data$Dataset.title,
-    target = data$obis,
-    value = 1
-  ),
-  data.frame(
-    source = data$Dataset.title,
-    target = data$ncei,
-    value = 1
-  ),
-  data.frame(
-    source = data$Dataset.title,
-    target = data$web.link,
-    value = 1
-  )
-) %>%
-  filter_all(all_vars(. != "")) # drop anything that is empty
-
-# Create nodes data frame
-nodes <- data.frame(
-  name = c(as.character(links$source), as.character(links$target)) %>% unique()
-)
-
-# Reformat the links with IDs
-links$IDsource <- match(links$source, nodes$name) - 1
-links$IDtarget <- match(links$target, nodes$name) - 1
-
-# Make the Network
-p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes,
-                   Source = "IDsource", Target = "IDtarget",
-                   Value = "value", NodeID = "name",
-                   sinksRight = FALSE)
-p
+sankey2layer(data, "Dataset.title", c("erddap", "obis", "ncei", "web.link"))
 ```
+
