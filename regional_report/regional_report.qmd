@@ -40,21 +40,25 @@ data <- getCleanedData() %>%
 
 ```{R}
 
-df <- data %>% mutate(
-  Dataset.title = Dataset.title,
-  Technical.POC.email. = Technical.POC.email.,
-  erddap = erddap,
-  obis = obis,
-  ncei = ncei,
-  .keep = "used"
-)
-# add colors column
-source(here("R/yes_no_values.R"))  # load consts used below
-df$erddap_colors <- ifelse(df$erddap %in% yes_values, "lightgreen", "lightpink")
-df$obis_colors <- ifelse(df$obis %in% yes_values, "lightgreen", "lightpink")
-df$ncei_colors <- ifelse(df$ncei %in% yes_values, "lightgreen", "lightpink")
+df <- data %>% select(
+  Dataset.title,
+  Technical.POC.email.,
 
-# TODO: add colors lightgreen gold1 lightpink 
+  erddap,
+  erddap_link, 
+  
+  obis,
+  obis_link,
+
+  ncei,
+  ncei_link,
+  
+  web,
+  web_link,
+  
+  code,
+  code_link
+)
 
 df %>% 
   reactable(
@@ -76,34 +80,79 @@ df %>%
       ),
       Technical.POC.email. = colDef(show = FALSE),
       erddap = colDef(
-        minWidth = 175,
-        cell = pill_buttons(
-          data = .,
-          color_ref = 'erddap_colors',
-          box_shadow = TRUE
-        )
+        cell = function(value, index) {
+          # Check if the link is NA or NULL
+          url <- df$erddap_link[index]
+          if (is.na(url) || is.null(url) || trimws(url) == "") {
+            return(value)  # Just return the original text if no link is available
+          } else {
+            # Return clickable link if URL is available
+            sprintf('<a href="%s" target="_blank">%s</a>', url, value)
+          }
+        },
+        html = TRUE  # Enable HTML rendering in the cell
       ),
-      erddap_colors = colDef(show = FALSE),
+      erddap_link = colDef(show = FALSE),
       
       obis = colDef(
-        minWidth = 175,
-        cell = pill_buttons(
-          data = .,
-          color_ref = 'obis_colors',
-          box_shadow = TRUE
-        )
+        cell = function(value, index) {
+          # Check if the link is NA or NULL
+          url <- df$obis_link[index]
+          if (is.na(url) || is.null(url) || trimws(url) == "") {
+            return(value)  # Just return the original text if no link is available
+          } else {
+            # Return clickable link if URL is available
+            sprintf('<a href="%s" target="_blank">%s</a>', url, value)
+          }
+        },
+        html = TRUE  # Enable HTML rendering in the cell
       ),
-      obis_colors = colDef(show = FALSE),
+      obis_link = colDef(show = FALSE),
       
       ncei = colDef(
-        minWidth = 175,
-        cell = pill_buttons(
-          data = .,
-          color_ref = 'ncei_colors',
-          box_shadow = TRUE
-        )
+        cell = function(value, index) {
+          # Check if the link is NA or NULL
+          url <- df$ncei_link[index]
+          if (is.na(url) || is.null(url) || trimws(url) == "") {
+            return(value)  # Just return the original text if no link is available
+          } else {
+            # Return clickable link if URL is available
+            sprintf('<a href="%s" target="_blank">%s</a>', url, value)
+          }
+        },
+        html = TRUE  # Enable HTML rendering in the cell
       ),
-      ncei_colors = colDef(show = FALSE)
+      ncei_link = colDef(show = FALSE),
+      
+      web = colDef(
+        cell = function(value, index) {
+          # Check if the link is NA or NULL
+          url <- df$web_link[index]
+          if (is.na(url) || is.null(url) || trimws(url) == "") {
+            return(value)  # Just return the original text if no link is available
+          } else {
+            # Return clickable link if URL is available
+            sprintf('<a href="%s" target="_blank">%s</a>', url, value)
+          }
+        },
+        html = TRUE  # Enable HTML rendering in the cell
+      ),
+      web_link = colDef(show = FALSE),
+      
+      code = colDef(
+        cell = function(value, index) {
+          # Check if the link is NA or NULL
+          url <- df$code_link[index]
+          if (is.na(url) || is.null(url) || trimws(url) == "") {
+            return(value)  # Just return the original text if no link is available
+          } else {
+            # Return clickable link if URL is available
+            sprintf('<a href="%s" target="_blank">%s</a>', url, value)
+          }
+        },
+        html = TRUE  # Enable HTML rendering in the cell
+      ),
+      code_link = colDef(show = FALSE)
     )
   ) %>% 
   add_title(
