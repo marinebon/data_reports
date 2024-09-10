@@ -39,7 +39,7 @@ data <- getCleanedData() %>%
 ```
 
 ```{R}
-
+#| code-summary: create pretty table with links
 df <- data %>% select(
   Dataset.title,
   Technical.POC.email.,
