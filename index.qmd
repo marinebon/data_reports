@@ -65,8 +65,7 @@ wordcloud(words = df$word, freq = df$freq, min.freq = 1,
 
 ```{R}
 #| code-summary: create a sankey diagram
-yes_values <- c("yes")
-no_values <- c("no", "no (in progress)", "no (latest revision in progress)", "none")
+source("R/yes_no_values.R")  # load consts used below
 data <- data %>%
   mutate(
     RA =     ifelse(tolower(RA)     %in% no_values,   "",          RA),
