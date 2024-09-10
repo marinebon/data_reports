@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Arctic.html</loc>
-    <lastmod>2024-06-11T17:53:57.790Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Central California.html</loc>
-    <lastmod>2024-06-11T17:53:55.580Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Gulf of Maine.html</loc>
-    <lastmod>2024-06-11T17:53:53.156Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/GLOS MBON.html</loc>
-    <lastmod>2024-06-11T17:53:50.833Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/All - this is a global dataset.html</loc>
-    <lastmod>2024-06-11T17:53:48.484Z</lastmod>
-  </url>
-  <url>
     <loc>https://marinebon.github.io/data_reports/regional_report/regional_report.html</loc>
-    <lastmod>2024-06-11T17:53:46.702Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/index.html</loc>
-    <lastmod>2024-06-11T17:53:45.522Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports.html</loc>
-    <lastmod>2024-06-11T17:53:47.349Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Coastal New England.html</loc>
-    <lastmod>2024-06-11T17:53:49.656Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/SE US.html</loc>
-    <lastmod>2024-06-11T17:53:51.975Z</lastmod>
-  </url>
-  <url>
-    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Southern California.html</loc>
-    <lastmod>2024-06-11T17:53:54.449Z</lastmod>
+    <lastmod>2024-09-10T19:02:27.522Z</lastmod>
   </url>
   <url>
     <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Southern California Bight.html</loc>
-    <lastmod>2024-06-11T17:53:56.683Z</lastmod>
+    <lastmod>2024-09-10T19:03:04.623Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/All - this is a global dataset.html</loc>
+    <lastmod>2024-09-10T19:03:04.561Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/South Florida.html</loc>
+    <lastmod>2024-09-10T19:03:04.626Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Arctic.html</loc>
+    <lastmod>2024-09-10T19:03:04.565Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports.html</loc>
+    <lastmod>2024-09-10T17:00:08.104Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/index.html</loc>
+    <lastmod>2024-09-10T18:01:01.423Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Coastal New England.html</loc>
+    <lastmod>2024-09-10T19:03:04.609Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/SE US.html</loc>
+    <lastmod>2024-09-10T19:03:04.618Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Gulf of Maine.html</loc>
+    <lastmod>2024-09-10T19:03:04.615Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/Central California.html</loc>
+    <lastmod>2024-09-10T19:03:04.569Z</lastmod>
+  </url>
+  <url>
+    <loc>https://marinebon.github.io/data_reports/regional_report/regional_reports/GLOS MBON.html</loc>
+    <lastmod>2024-09-10T19:03:04.612Z</lastmod>
   </url>
 </urlset>

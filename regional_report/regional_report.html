@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MBON Data Report - SE US</title>
+<title>SE US – MBON Data Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,11 +94,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="../site_libs/reactwidget-2.0.0/react-tools.umd.cjs"></script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -102,31 +117,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MBON Data Report</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../regional_report/regional_reports.html" rel="" target="">
- <span class="menu-text">Project Reports</span></a>
+    <a class="nav-link" href="../regional_report/regional_reports.html"> 
+<span class="menu-text">Project Reports</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/marinebon/data_reports"> 
+<span class="menu-text">Source Code on GitHub</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -161,10 +180,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<div class="cell" data-hash="regional_report_cache/html/unnamed-chunk-1_fd8bebe54b172f6f4278f6daea70c862">
-<details>
+
+<div class="cell">
+<details class="code-fold">
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"librarian"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If not installed, install the package</span></span>
@@ -173,29 +194,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  dplyr,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  here</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  here,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  htmltools,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  reactablefmtr,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  tidyverse</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="se-us-report" class="level1">
 <h1>SE US Report</h1>
-<div class="cell" data-hash="regional_report_cache/html/unnamed-chunk-2_dfffadbce0580dec48ca9026423c1f23">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>load data</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/getCleanedData.R"</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">getCleanedData</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mbon.project <span class="sc">==</span> params<span class="sc">$</span>project_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="regional_report_cache/html/unnamed-chunk-3_389000fbc2bf83448dd6ac2f8c0a3e62">
-<details>
-<summary>show dataset titles</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data<span class="sc">$</span>Dataset.title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">select</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  Dataset.title,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  Technical.POC.email.,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  erddap,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  erddap_link, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  obis,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  obis_link,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ncei,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ncei_link,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  web,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  web_link,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  code,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  code_link</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reactable</span>(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">theme =</span> <span class="fu">pff</span>(<span class="at">centered =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">defaultColDef =</span> <span class="fu">colDef</span>(<span class="at">footerStyle =</span> <span class="fu">list</span>(<span class="at">fontWeight =</span> <span class="st">"bold"</span>)),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">Dataset.title =</span> <span class="fu">colDef</span>(</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">minWidth =</span> <span class="dv">175</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">footer =</span> <span class="st">'Total'</span>,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="fu">merge_column</span>(</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> .,</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">merged_name =</span> <span class="st">'Technical.POC.email.'</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">merged_position =</span> <span class="st">'below'</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">merged_size =</span> <span class="dv">14</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="dv">16</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">'#333333'</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">spacing =</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>      <span class="at">Technical.POC.email. =</span> <span class="fu">colDef</span>(<span class="at">show =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">erddap =</span> <span class="fu">colDef</span>(</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value, index) {</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Check if the link is NA or NULL</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>          url <span class="ot">&lt;-</span> df<span class="sc">$</span>erddap_link[index]</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="fu">is.na</span>(url) <span class="sc">||</span> <span class="fu">is.null</span>(url) <span class="sc">||</span> <span class="fu">trimws</span>(url) <span class="sc">==</span> <span class="st">""</span>) {</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(value)  <span class="co"># Just return the original text if no link is available</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>          } <span class="cf">else</span> {</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Return clickable link if URL is available</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sprintf</span>(<span class="st">'&lt;a href="%s" target="_blank"&gt;%s&lt;/a&gt;'</span>, url, value)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">html =</span> <span class="cn">TRUE</span>  <span class="co"># Enable HTML rendering in the cell</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>      <span class="at">erddap_link =</span> <span class="fu">colDef</span>(<span class="at">show =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">obis =</span> <span class="fu">colDef</span>(</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value, index) {</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Check if the link is NA or NULL</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>          url <span class="ot">&lt;-</span> df<span class="sc">$</span>obis_link[index]</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="fu">is.na</span>(url) <span class="sc">||</span> <span class="fu">is.null</span>(url) <span class="sc">||</span> <span class="fu">trimws</span>(url) <span class="sc">==</span> <span class="st">""</span>) {</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(value)  <span class="co"># Just return the original text if no link is available</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>          } <span class="cf">else</span> {</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Return clickable link if URL is available</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sprintf</span>(<span class="st">'&lt;a href="%s" target="_blank"&gt;%s&lt;/a&gt;'</span>, url, value)</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>        <span class="at">html =</span> <span class="cn">TRUE</span>  <span class="co"># Enable HTML rendering in the cell</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">obis_link =</span> <span class="fu">colDef</span>(<span class="at">show =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>      <span class="at">ncei =</span> <span class="fu">colDef</span>(</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value, index) {</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Check if the link is NA or NULL</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>          url <span class="ot">&lt;-</span> df<span class="sc">$</span>ncei_link[index]</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="fu">is.na</span>(url) <span class="sc">||</span> <span class="fu">is.null</span>(url) <span class="sc">||</span> <span class="fu">trimws</span>(url) <span class="sc">==</span> <span class="st">""</span>) {</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(value)  <span class="co"># Just return the original text if no link is available</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>          } <span class="cf">else</span> {</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Return clickable link if URL is available</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sprintf</span>(<span class="st">'&lt;a href="%s" target="_blank"&gt;%s&lt;/a&gt;'</span>, url, value)</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>        <span class="at">html =</span> <span class="cn">TRUE</span>  <span class="co"># Enable HTML rendering in the cell</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>      <span class="at">ncei_link =</span> <span class="fu">colDef</span>(<span class="at">show =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>      <span class="at">web =</span> <span class="fu">colDef</span>(</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value, index) {</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Check if the link is NA or NULL</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>          url <span class="ot">&lt;-</span> df<span class="sc">$</span>web_link[index]</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="fu">is.na</span>(url) <span class="sc">||</span> <span class="fu">is.null</span>(url) <span class="sc">||</span> <span class="fu">trimws</span>(url) <span class="sc">==</span> <span class="st">""</span>) {</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(value)  <span class="co"># Just return the original text if no link is available</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>          } <span class="cf">else</span> {</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Return clickable link if URL is available</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sprintf</span>(<span class="st">'&lt;a href="%s" target="_blank"&gt;%s&lt;/a&gt;'</span>, url, value)</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>        <span class="at">html =</span> <span class="cn">TRUE</span>  <span class="co"># Enable HTML rendering in the cell</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>      <span class="at">web_link =</span> <span class="fu">colDef</span>(<span class="at">show =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>      <span class="at">code =</span> <span class="fu">colDef</span>(</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>        <span class="at">cell =</span> <span class="cf">function</span>(value, index) {</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>          <span class="co"># Check if the link is NA or NULL</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>          url <span class="ot">&lt;-</span> df<span class="sc">$</span>code_link[index]</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="fu">is.na</span>(url) <span class="sc">||</span> <span class="fu">is.null</span>(url) <span class="sc">||</span> <span class="fu">trimws</span>(url) <span class="sc">==</span> <span class="st">""</span>) {</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span>(value)  <span class="co"># Just return the original text if no link is available</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>          } <span class="cf">else</span> {</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Return clickable link if URL is available</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sprintf</span>(<span class="st">'&lt;a href="%s" target="_blank"&gt;%s&lt;/a&gt;'</span>, url, value)</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>        <span class="at">html =</span> <span class="cn">TRUE</span>  <span class="co"># Enable HTML rendering in the cell</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>      <span class="at">code_link =</span> <span class="fu">colDef</span>(<span class="at">show =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_title</span>(</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">'Client Order Summary'</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Time series of zooplankton abundance of the South Florida Program / Sanctuaries Marine Biodiversity Observation Network programs"
-[2] "Time series of zooplankton abundance in South Florida from 2015 onward (MBON program)"                                           
-[3] "Marine zooplankton community from coral reef sites in the Florida Keys National\nMarine Sanctuary (2015-2016)"                   </code></pre>
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:32px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Client Order Summary</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-dba4be7ff93ef570f534" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-dba4be7ff93ef570f534">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Dataset.title":["Time series of image-based, in vivo plankton abundance in South Florida from December 2022 onward (SEUS MBON / SFER programs)","Marine zooplankton community from coral reef sites in the Florida Keys National\nMarine Sanctuary (2015-2016)","Time series of zooplankton abundance in South Florida from 2015 onward (MBON program)","Time series of zooplankton abundance of the South Florida Program / Sanctuaries Marine Biodiversity Observation Network programs"],"Technical.POC.email.":["enrique.montes@noaa.gov","anni.djurhuus@gmail.com","tylarmurray@usf.edu / sebastian15@usf.edu","tylarmurray@usf.edu"],"erddap":["No","No","No","No"],"erddap_link":["","","",""],"obis":["No","Yes","Yes","Yes"],"obis_link":["","https://obis.org/dataset/b41e10e2-5717-4bb3-b06a-7840a62aebcc","DOI: 10.15468/buqg4u  \nHowever, that data has issues and we need to upload the updated version.","https://obis.org/dataset/afef5da2-614b-4208-aee6-c2413ed5ab76"],"ncei":["No","","No","No"],"ncei_link":["","I don't know if it was archived in NCEI","",""],"web":["Yes","Yes","Yes","Yes"],"web_link":["https://ecotaxa.obs-vlfr.fr/prj/9989","https://pubmed.ncbi.nlm.nih.gov/29937700/","DOI: 10.15468/buqg4u \nHowever, that data has issues and we need to upload the updated version.","https://obis.org/dataset/afef5da2-614b-4208-aee6-c2413ed5ab76"],"code":["No","Yes","Yes","Yes"],"code_link":["","I'm currently finishing the data alignment to DC and working on the workflow documentation.","",""]},"columns":[{"id":"Dataset.title","name":"Dataset.title","type":"character","footerStyle":{"fontWeight":"bold"},"cell":[{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontSize":16,"color":"#333333","fontWeight":"bold","textDecoration":null,"fontStyle":"normal","marginBottom":"2px"}},"children":["Time series of image-based, in vivo plankton abundance in South Florida from December 2022 onward (SEUS MBON / SFER programs)"]},{"name":"div","attribs":{"style":{"fontSize":14,"color":"#777","fontWeight":"normal","textDecoration":"normal","fontStyle":"normal"}},"children":["enrique.montes@noaa.gov"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontSize":16,"color":"#333333","fontWeight":"bold","textDecoration":null,"fontStyle":"normal","marginBottom":"2px"}},"children":["Marine zooplankton community from coral reef sites in the Florida Keys National\nMarine Sanctuary (2015-2016)"]},{"name":"div","attribs":{"style":{"fontSize":14,"color":"#777","fontWeight":"normal","textDecoration":"normal","fontStyle":"normal"}},"children":["anni.djurhuus@gmail.com"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontSize":16,"color":"#333333","fontWeight":"bold","textDecoration":null,"fontStyle":"normal","marginBottom":"2px"}},"children":["Time series of zooplankton abundance in South Florida from 2015 onward (MBON program)"]},{"name":"div","attribs":{"style":{"fontSize":14,"color":"#777","fontWeight":"normal","textDecoration":"normal","fontStyle":"normal"}},"children":["tylarmurray@usf.edu / sebastian15@usf.edu"]}]},{"name":"div","attribs":{},"children":[{"name":"div","attribs":{"style":{"fontSize":16,"color":"#333333","fontWeight":"bold","textDecoration":null,"fontStyle":"normal","marginBottom":"2px"}},"children":["Time series of zooplankton abundance of the South Florida Program / Sanctuaries Marine Biodiversity Observation Network programs"]},{"name":"div","attribs":{"style":{"fontSize":14,"color":"#777","fontWeight":"normal","textDecoration":"normal","fontStyle":"normal"}},"children":["tylarmurray@usf.edu"]}]}],"footer":"Total","minWidth":175},{"id":"Technical.POC.email.","name":"Technical.POC.email.","type":"character","footerStyle":{"fontWeight":"bold"},"show":false},{"id":"erddap","name":"erddap","type":"character","footerStyle":{"fontWeight":"bold"},"cell":["No","No","No","No"],"html":true},{"id":"erddap_link","name":"erddap_link","type":"character","footerStyle":{"fontWeight":"bold"},"show":false},{"id":"obis","name":"obis","type":"character","footerStyle":{"fontWeight":"bold"},"cell":["No","<a href=\"https://obis.org/dataset/b41e10e2-5717-4bb3-b06a-7840a62aebcc\" target=\"_blank\">Yes<\/a>","<a href=\"DOI: 10.15468/buqg4u  \nHowever, that data has issues and we need to upload the updated version.\" target=\"_blank\">Yes<\/a>","<a href=\"https://obis.org/dataset/afef5da2-614b-4208-aee6-c2413ed5ab76\" target=\"_blank\">Yes<\/a>"],"html":true},{"id":"obis_link","name":"obis_link","type":"character","footerStyle":{"fontWeight":"bold"},"show":false},{"id":"ncei","name":"ncei","type":"character","footerStyle":{"fontWeight":"bold"},"cell":["No","<a href=\"I don't know if it was archived in NCEI\" target=\"_blank\"><\/a>","No","No"],"html":true},{"id":"ncei_link","name":"ncei_link","type":"character","footerStyle":{"fontWeight":"bold"},"show":false},{"id":"web","name":"web","type":"character","footerStyle":{"fontWeight":"bold"},"cell":["<a href=\"https://ecotaxa.obs-vlfr.fr/prj/9989\" target=\"_blank\">Yes<\/a>","<a href=\"https://pubmed.ncbi.nlm.nih.gov/29937700/\" target=\"_blank\">Yes<\/a>","<a href=\"DOI: 10.15468/buqg4u \nHowever, that data has issues and we need to upload the updated version.\" target=\"_blank\">Yes<\/a>","<a href=\"https://obis.org/dataset/afef5da2-614b-4208-aee6-c2413ed5ab76\" target=\"_blank\">Yes<\/a>"],"html":true},{"id":"web_link","name":"web_link","type":"character","footerStyle":{"fontWeight":"bold"},"show":false},{"id":"code","name":"code","type":"character","footerStyle":{"fontWeight":"bold"},"cell":["No","<a href=\"I'm currently finishing the data alignment to DC and working on the workflow documentation.\" target=\"_blank\">Yes<\/a>","Yes","Yes"],"html":true},{"id":"code_link","name":"code_link","type":"character","footerStyle":{"fontWeight":"bold"},"show":false}],"theme":{"color":"#878e94","backgroundColor":"#ffffff","borderWidth":"0px","stripedColor":"#f9f9fb","highlightColor":"#f1f3f4","cellPadding":4,"tableStyle":{"fontSize":16},"headerStyle":{"borderWidth":"1px","padding":"7px","borderTop":"1px solid #595d63","backgroundColor":"#595d63","textTransform":"uppercase","borderColor":"#595d63","color":"#ffffff","transitionDuration":"0.1s","&:hover[aria-sort]":{"backgroundColor":"#4d5056","color":"#ffffff"},"&[aria-sort='ascending']":{"backgroundColor":"#393c40","color":"#ffffff","boxShadow":"inset 0 3px 0 0 #ffffff"},"&[aria-sort='descending']":{"backgroundColor":"#393c40","color":"#ffffff","boxShadow":"inset 0 -3px 0 0 #ffffff"},"fontSize":12,"fontWeight":"bold"},"groupHeaderStyle":{"&:not(:empty)":{"backgroundColor":"#e4e8ed","textTransform":"uppercase","fontWeight":"bold","color":"#878e94","fontSize":12,"boxShadow":"inset 3px 0 0 0 #ffffff"}},"rowSelectedStyle":{"backgroundColor":"#e4e8ed"},"cellStyle":{"display":"flex","flexDirection":"column","justifyContent":"center"},"inputStyle":{"backgroundColor":"#ffffff","color":"#878e94"},"searchInputStyle":{"fontSize":"14px","textTransform":"uppercase","backgroundColor":"#ffffff","color":"#878e94","&:focus":{"color":"#878e94"}},"selectStyle":{"backgroundColor":"#073c57","color":"#ffffff","borderColor":"#ffffff","outlineColor":"#ffffff"},"paginationStyle":{"textTransform":"uppercase","fontSize":"15px"},"pageButtonStyle":{"textTransform":"uppercase","fontSize":"15px","backgroundColor":"#ffffff","color":"#164861","&:hover":{"backgroundColor":"#052c3f","color":"#ffffff"}},"pageButtonHoverStyle":{"backgroundColor":"#052c3f","color":"#ffffff"},"pageButtonActiveStyle":{"backgroundColor":"#073c57","color":"#ffffff"},"pageButtonCurrentStyle":{"backgroundColor":"#073c57","color":"#ffffff"}},"dataKey":"77e66a0a38b387981edf21e5a1986c8a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -238,18 +379,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -281,11 +411,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/marinebon\.github\.io\/data_reports\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -295,8 +464,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -308,7 +486,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -352,6 +653,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -377,6 +679,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -437,6 +765,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
