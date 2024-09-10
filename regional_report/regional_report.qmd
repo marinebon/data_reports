@@ -22,7 +22,10 @@ if (!requireNamespace("librarian", quietly = TRUE)) {
 
 librarian::shelf(
   dplyr,
-  here
+  here,
+  htmltools,
+  reactablefmtr,
+  tidyverse
 )
 
 ```
@@ -36,6 +39,74 @@ data <- getCleanedData() %>%
 ```
 
 ```{R}
-#| code-summary: show dataset titles
-print(data$Dataset.title)
+
+df <- data %>% mutate(
+  Dataset.title = Dataset.title,
+  Technical.POC.email. = Technical.POC.email.,
+  erddap = erddap,
+  obis = obis,
+  ncei = ncei,
+  .keep = "used"
+)
+# add colors column
+source(here("R/yes_no_values.R"))  # load consts used below
+df$erddap_colors <- ifelse(df$erddap %in% yes_values, "lightgreen", "lightpink")
+df$obis_colors <- ifelse(df$obis %in% yes_values, "lightgreen", "lightpink")
+df$ncei_colors <- ifelse(df$ncei %in% yes_values, "lightgreen", "lightpink")
+
+# TODO: add colors lightgreen gold1 lightpink 
+
+df %>% 
+  reactable(
+    theme = pff(centered = TRUE),
+    defaultColDef = colDef(footerStyle = list(fontWeight = "bold")),
+    columns = list(
+      Dataset.title = colDef(
+        minWidth = 175,
+        footer = 'Total',
+        cell = merge_column(
+          data = .,
+          merged_name = 'Technical.POC.email.',
+          merged_position = 'below',
+          merged_size = 14,
+          size = 16,
+          color = '#333333',
+          spacing = -1
+        )
+      ),
+      Technical.POC.email. = colDef(show = FALSE),
+      erddap = colDef(
+        minWidth = 175,
+        cell = pill_buttons(
+          data = .,
+          color_ref = 'erddap_colors',
+          box_shadow = TRUE
+        )
+      ),
+      erddap_colors = colDef(show = FALSE),
+      
+      obis = colDef(
+        minWidth = 175,
+        cell = pill_buttons(
+          data = .,
+          color_ref = 'obis_colors',
+          box_shadow = TRUE
+        )
+      ),
+      obis_colors = colDef(show = FALSE),
+      
+      ncei = colDef(
+        minWidth = 175,
+        cell = pill_buttons(
+          data = .,
+          color_ref = 'ncei_colors',
+          box_shadow = TRUE
+        )
+      ),
+      ncei_colors = colDef(show = FALSE)
+    )
+  ) %>% 
+  add_title(
+    title = 'Client Order Summary'
+  )
 ```
