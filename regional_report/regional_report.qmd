@@ -156,6 +156,6 @@ df %>%
     )
   ) %>% 
   add_title(
-    title = 'Client Order Summary'
+    title = 'Dataset Publication Summary'
   )
 ```
