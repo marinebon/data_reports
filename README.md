@@ -8,5 +8,6 @@ NOTE: This site is only updated manually; request an update by [opening an issue
 ## Usage
 1. export the [MBON datasets spreadsheet](https://docs.google.com/spreadsheets/d/1jBS8ASS27yV8APZ8Fh-tgX6dHdopwianrUZv0kbKcxw/edit#gid=1284796732) as `.csv` & save to `./data/MBON dataset registration (Responses) - Form Responses 1.csv`
 2. `quarto render` NOTE: also try `quarto render . --no-cache`
+  * you can clear cache manaully eg: `rm -rf regional_report/regional_reports/*`
 3. `quarto preview`
 4. `quarto publish`
