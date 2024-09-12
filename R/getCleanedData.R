@@ -8,6 +8,8 @@ getCleanedData <- function(){
       mbon.project = Which.MBON.project.is.this.dataset.associated.with.,
       RA = If.you.have.worked.with.a.Regional.Association..please.indicate.which.one.s..,
       
+      doi = If.one.exists..enter.the.DOI.for.the.dataset.,
+      
       erddap = Has.the.dataset.been.loaded.into.ERDDAP.,
       erddap_link = If.yes.to.above..please.include.appropriate.ERDDAP.link.s..here.,
 

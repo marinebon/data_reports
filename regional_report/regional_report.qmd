@@ -43,6 +43,8 @@ data <- getCleanedData() %>%
 df <- data %>% select(
   Dataset.title,
   Technical.POC.email.,
+  
+  doi,
 
   erddap,
   erddap_link, 
@@ -79,6 +81,21 @@ df %>%
         )
       ),
       Technical.POC.email. = colDef(show = FALSE),
+      
+      doi = colDef(
+        cell = function(value, index) {
+          # Check if the link is NA or NULL
+          url <- value
+          if (is.na(url) || is.null(url) || trimws(url) == "") {
+            return("No")
+          } else {
+            # Return clickable link if URL is available
+            sprintf('<a href="https://doi.org/%s" target="_blank">Yes</a>', value)
+          }
+        },
+        html = TRUE  # Enable HTML rendering in the cell
+      ),
+      
       erddap = colDef(
         cell = function(value, index) {
           # Check if the link is NA or NULL
