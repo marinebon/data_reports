@@ -17,10 +17,14 @@ source(here("R/getCleanedData.R"))
 df <- getCleanedData()
 
 library(glue)
+library(httr)
+library(jsonlite)  # For parsing JSON instead of rjson
 
 
-
-# doi <- "10.25921/b2g4-bs86"
+# Step 1: Split comma-separated DOIs into multiple rows
+df <- df %>%
+  separate_rows(doi, sep = ",") %>%
+  filter(!is.na(doi) & doi != "")  # Remove empty or NA DOIs
 
 # Initialize a list to store citing DOIs for each doi in the dataframe
 all_citing <- list()
@@ -29,7 +33,7 @@ all_citing <- list()
 for (i in seq_along(df$doi)) {
   doi <- df$doi[i]
   
-    # Skip if DOI is empty or NA
+  # Skip if DOI is empty or NA
   if (is.na(doi) || doi == "") {
     message(glue("Skipping empty DOI at row {i}."))
     next
@@ -37,17 +41,31 @@ for (i in seq_along(df$doi)) {
   
   # Create the URL for the OpenCitations API
   opcit <- glue("https://opencitations.net/index/coci/api/v1/citations/{doi}")
-  
-  # Fetch the data from the API
-  result <- tryCatch({
-    fromJSON(file = opcit)
+
+    # Make the API request
+  response <- tryCatch({
+    GET(opcit)
   }, error = function(e) {
-    message(glue("Error processing DOI: {doi}\n{opcit}"))
+    message(glue("Error fetching data for DOI: {doi}, skipping."))
     NULL
   })
   
-  # Extract the citing DOIs if the result is not NULL
-  if (!is.null(result)) {
+  # Check if response is valid
+  if (is.null(response) || http_status(response)$category != "Success") {
+    message(glue("Invalid response for DOI: {doi}, skipping."))
+    next
+  }
+  
+  # Parse JSON content
+  result <- tryCatch({
+    content(response, "parsed", type = "application/json")
+  }, error = function(e) {
+    message(glue("Error parsing JSON for DOI: {doi}, skipping."))
+    NULL
+  })
+  
+  # Extract citing DOIs if result is valid
+  if (!is.null(result) && length(result) > 0) {
     citing <- lapply(result, function(x) x[['citing']])
     citing <- unlist(citing)
     
@@ -57,6 +75,8 @@ for (i in seq_along(df$doi)) {
     # Print the citing DOIs
     print(glue("Citing DOIs for {doi}:"))
     print(citing)
+  } else {
+    message(glue("No citing DOIs found for {doi}."))
   }
 }
 ```
