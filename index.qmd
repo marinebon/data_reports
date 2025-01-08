@@ -119,3 +119,30 @@ p <- networkD3::sankeyNetwork(Links = links, Nodes = nodes,
                    sinksRight = FALSE)
 p
 ```
+
+```{R}
+#| code-summary: show counts for standard publication metrics
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# Select columns to analyze
+columns_to_check <- c(
+  "erddap_link", "ncei_link", "code_link", "obis_link", "doi", "web_link"
+)
+
+# Count non-empty values for each column
+summary_df <- data %>%
+  summarise(across(all_of(columns_to_check), ~ sum(!is.na(.) & . != ""))) %>%
+  pivot_longer(cols = everything(), names_to = "Column", values_to = "NonEmptyCount")
+
+# Plot the bar chart
+ggplot(summary_df, aes(x = Column, y = NonEmptyCount)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "N Datasets Published by Repository",
+       x = "Publication Type",
+       y = "Number of Datasets") +
+  theme_minimal()
+
+
+```
