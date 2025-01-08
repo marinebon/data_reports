@@ -4,22 +4,21 @@ format: html
 #echo: false
 code-fold: true
 warning: false
-params: 
-  project_id: "SE US"
 execute: 
   cache: true
 ---
 
 
 ```{R}
-#| code-summary: read in data from csv
+#| code-summary: get doi citations & print them
+library(glue)
+library(here)
+library(httr)
+library(jsonlite)
+library(tidyr)
+
 source(here("R/getCleanedData.R"))
 df <- getCleanedData()
-
-library(glue)
-library(httr)
-library(jsonlite)  # For parsing JSON instead of rjson
-
 
 # Step 1: Split comma-separated DOIs into multiple rows
 df <- df %>%

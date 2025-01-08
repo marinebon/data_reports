@@ -126,6 +126,9 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
+source(here("R/getCleanedData.R"))
+data <- getCleanedData()
+
 # Select columns to analyze
 columns_to_check <- c(
   "erddap_link", "ncei_link", "code_link", "obis_link", "doi", "web_link"
